@@ -4,6 +4,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import schema from "./graph/schema";
+import models from "./db/models";
 
 dotenv.config();
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true });
@@ -19,6 +20,7 @@ app.use(cors("*"));
 const server = new ApolloServer({
     schema,
     context: ({ req }) => ({
+        models,
         secret: process.env.SECRET,
         req
     })
