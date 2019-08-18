@@ -2,6 +2,9 @@ import bcrypt from "bcrypt";
 import types from "../types";
 
 const get = async(parent, args, { models }, info) => {
+    if (args._id) {
+        return models.UserModel.find({ _id: args._id });
+    }
     return models.UserModel.find();
 }
 

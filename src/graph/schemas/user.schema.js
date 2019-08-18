@@ -4,7 +4,11 @@ import resolvers from "../resolvers";
 
 const getUsers = { 
     type: new GraphQLList(types.userTypes.UserType),
-    args: {},
+    args: {
+        _id: {
+            type: GraphQLString,
+        }
+    },
     resolve: async(parent, args, context, info) => resolvers.userResolvers.get(parent, args, context, info)
 };
 
