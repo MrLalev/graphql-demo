@@ -14,14 +14,29 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-env": "^7.5.5",
+    "@babel/core": "^7.5.5",
     "@types/dotenv": "^6.1.0",
     "@types/mongoose": "^5.3.20",
-    "babel-cli": "^6.26.0",
+    "@babel/cli": "^7.0.0",
     "dotenv": "^6.2.0",
     "eslint": "^5.15.1",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "@types/graphql": "^14.2.3",
+    "@babel/node": "^7.5.5"
   },
   "dependencies": {
-    "cors": "^2.8.5"
+    "apollo-server": "^2.4.8",
+    "apollo-server-express": "^2.4.8",
+    "bcrypt": "^3.0.4",
+    "core-js": "^3.2.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "graphql": "^14.1.1",
+    "graphql-parse-resolve-info": "^4.1.0",
+    "graphql-type-json": "^0.3.0",
+    "jsonwebtoken": "^8.5.0",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.17",
+    "mongoose-unique-validator": "^2.0.3"
   }
 }
