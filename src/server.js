@@ -3,7 +3,7 @@ import { ApolloServer } from "apollo-server-express";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import schema from "./graph";
+import schema from "./graph/schema";
 
 dotenv.config();
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true });
