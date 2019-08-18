@@ -10,3 +10,4 @@
 ## Build process:
 - docker-compose build
 - docker-compose up
+- open GraphQL Playground on http://localhost:${SERVER_PORT}/graphql for testing
