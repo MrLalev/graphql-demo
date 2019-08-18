@@ -1,0 +1,25 @@
+version: '3'
+services:
+    graphql-demo-mongo:
+        container_name: graphql-demo-mongo
+        image: mongo
+        ports:
+            - '27017:27017'
+        restart: always
+        volumes:
+            - graphql-demo-db-data:/data/db
+        # environment:
+        #     MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+        #     MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+    graphql-demo-server: 
+        container_name: graphql-demo-server
+        restart: always
+        build: .
+        ports:
+            - '${SERVER_PORT}:3000'
+        links:
+            - graphql-demo-mongo
+        volumes:
+            - ./src:/usr/src/app/src
+volumes:
+    graphql-demo-db-data:

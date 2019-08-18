@@ -1,0 +1,27 @@
+{
+  "name": "graphql-demo",
+  "version": "1.0.0",
+  "description": "Demo GraphQL app",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node ./src/server.js --legacy-watch "
+  },
+  "author": "Lachezar Lalev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrLalev/graphql-demo.git"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.5.5",
+    "@types/dotenv": "^6.1.0",
+    "@types/mongoose": "^5.3.20",
+    "babel-cli": "^6.26.0",
+    "dotenv": "^6.2.0",
+    "eslint": "^5.15.1",
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
+}
