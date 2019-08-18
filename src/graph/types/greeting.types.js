@@ -9,6 +9,10 @@ const GreetingMessageType = new GraphQLObjectType({
         created_at: {
             type: GraphQLString
         },
+        revers_message: {
+            type: GraphQLString,
+            resolve: (parent, args, context, info) => parent.message.split("").reverse().join("")
+        }
     })
 });
 
