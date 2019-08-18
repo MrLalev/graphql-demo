@@ -1,6 +1,6 @@
 # graphql-demo
 
-## GraphQL demo application for mastering best practices of the technology.
+*GraphQL demo application for mastering best practices of the technology.*
 
 ## Environment setup and configuration:
 - Docker
