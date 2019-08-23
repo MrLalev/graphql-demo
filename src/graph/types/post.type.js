@@ -7,27 +7,21 @@ import {
     GraphQLList,
     GraphQLNonNull
 } from "graphql";
-import postTypes from "./post.type";
-import resolvers from "../resolvers";
 
-const UserType = new GraphQLObjectType({
-    name: 'UserType',
+const PostType = new GraphQLObjectType({
+    name: 'PostType',
     fields: () => ({
         _id: {
             type: GraphQLString
         },
-        first_name: {
+        title: {
             type: GraphQLString
         },
-        last_name: {
+        content: {
             type: GraphQLString
         },
-        email: {
+        created_by: {
             type: GraphQLString
-        },
-        posts: {
-            type: new GraphQLList(postTypes.PostType),
-            resolve: async(parent, args, context, info) => resolvers.userResolvers.getUserPosts(parent, args, context, info)
         },
         created_at: {
             type: GraphQLString
@@ -38,25 +32,22 @@ const UserType = new GraphQLObjectType({
     })
 });
 
-const UserInputType = new GraphQLInputObjectType({
-    name: 'UserInputType',
+const PostInputType = new GraphQLInputObjectType({
+    name: 'PostInputType',
     fields: () => ({
-        first_name: {
+        title: {
             type: new GraphQLNonNull(GraphQLString)
         },
-        last_name: {
+        content: {
             type: new GraphQLNonNull(GraphQLString)
         },
-        email: {
-            type: new GraphQLNonNull(GraphQLString)
-        },
-        password: {
+        created_by: {
             type: new GraphQLNonNull(GraphQLString)
         }
     })
 });
 
 export default {
-    UserType,
-    UserInputType,
+    PostType,
+    PostInputType,
 }
