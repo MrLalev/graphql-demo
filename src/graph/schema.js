@@ -7,6 +7,7 @@ const QueryType = new GraphQLObjectType({
     fields: {
         hello: schemas.greetingSchema.hello,
         getUsers: schemas.userSchema.getUsers,
+        getPosts: schemas.postSchema.getPosts,
     }
 });
 
@@ -14,6 +15,7 @@ const MutationType = new GraphQLObjectType({
     name: 'MutationType',
     fields: {
         createUser: schemas.userSchema.createUser,
+        createPost: schemas.postSchema.createPost,
     }
 });
 
