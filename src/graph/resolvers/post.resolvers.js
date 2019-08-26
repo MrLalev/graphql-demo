@@ -1,6 +1,8 @@
 import types from "../types";
 import entities from "../entities";
 import { parseQueryFields } from "../utils/helpers";
+import { ApolloError } from "apollo-server";
+import constants from "../utils/constants";
 
 const get = async(parent, args, { models }, info) => {
     if (args._id) {
@@ -9,13 +11,21 @@ const get = async(parent, args, { models }, info) => {
     return models.PostModel.find({}, parseQueryFields(info, types.postTypes.PostType));
 }
 
-const create = async(parent, { input }, { models }, info) => {
+const create = async(parent, { input }, { models, pubsub }, info) => {
     const post = new entities.PostEntities.Post(
         input.title,
         input.content,
         input.created_by
     );
-    return models.PostModel.create(post);
+
+    try {
+        const newPost = await models.PostModel.create(post);
+        pubsub.publish(constants.subscriptionTopics.POSTS.CREATE, { onPostCreated: newPost });
+        return newPost;
+    } catch (error) {
+        throw new ApolloError(error.message, error.code);
+    }
+    
 }
 
 export default {

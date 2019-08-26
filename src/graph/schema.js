@@ -19,7 +19,15 @@ const MutationType = new GraphQLObjectType({
     }
 });
 
+const SubscriptionType = new GraphQLObjectType({
+    name: 'SubscriptionType',
+    fields: {
+        onPostCreated: schemas.postSchema.onPostCreated
+    }
+});
+
 export default new GraphQLSchema({
     query: QueryType,
     mutation: MutationType,
+    subscription: SubscriptionType
 });
