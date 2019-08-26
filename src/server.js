@@ -12,6 +12,8 @@ mongoose.connection.once('open', () => {
     console.log(error);
 });
 
+const pubsub = new PubSub();
+
 const server = new ApolloServer({
     schema,
     context: ({ req }) => ({
