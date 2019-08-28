@@ -23,7 +23,7 @@ const createPost = {
     resolve: async(parent, args, context, info) => resolvers.postResolvers.create(parent, args, context, info)
 };
 
-const onPostCreated = {
+const onPostCreate = {
     type: types.postTypes.PostType,
     args: {},
     subscribe: async(parent, args, context, info) => context.pubsub.asyncIterator(constants.subscriptionTopics.POSTS.CREATE)
@@ -32,5 +32,5 @@ const onPostCreated = {
 export default {
     getPosts,
     createPost,
-    onPostCreated,
+    onPostCreate,
 };

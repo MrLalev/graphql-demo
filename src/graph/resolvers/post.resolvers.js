@@ -20,7 +20,7 @@ const create = async(parent, { input }, { models, pubsub }, info) => {
 
     try {
         const newPost = await models.PostModel.create(post);
-        pubsub.publish(constants.subscriptionTopics.POSTS.CREATE, { onPostCreated: newPost });
+        pubsub.publish(constants.subscriptionTopics.POSTS.CREATE, { onPostCreate: newPost });
         return newPost;
     } catch (error) {
         throw new ApolloError(error.message, error.code);
