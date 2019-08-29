@@ -28,7 +28,12 @@ const create = async(parent, { input }, { models, pubsub }, info) => {
     
 }
 
+const findPost = async(parent, args, { models }, info) => {
+    return models.PostModel.find({ $or: [{ title: { $regex: args.text, $options: "i" } }]}, parseQueryFields(info, types.postTypes.PostType));
+}
+
 export default {
     get,
     create,
+    findPost,
 }

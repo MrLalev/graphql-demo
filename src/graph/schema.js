@@ -6,6 +6,7 @@ const QueryType = new GraphQLObjectType({
     name: 'QueryType',
     fields: {
         hello: schemas.greetingSchema.hello,
+        search: schemas.unionSchema.search,
         getUsers: schemas.userSchema.getUsers,
         getPosts: schemas.postSchema.getPosts,
     }
