@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 import { ApolloServer } from "apollo-server";
 import mongoose from "mongoose";
-import schema from "./graph";
+import schema from "./graph/schema";
 
 dotenv.config();
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useCreateIndex: true });

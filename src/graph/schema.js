@@ -1,14 +1,11 @@
 import { GraphQLObjectType, GraphQLSchema } from "graphql";
 import { GraphQLString } from "graphql/type/scalars";
+import schemas from "./schemas";
 
 const QueryType = new GraphQLObjectType({
     name: 'QueryType',
     fields: {
-        hello: { 
-            type: GraphQLString,
-            args: {},
-            resolve: async(parent, args, context, info) => 'Hello World!'
-        }
+        hello: schemas.greetingSchema.hello,
     }
 });
 
