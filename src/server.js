@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 import { ApolloServer } from "apollo-server";
 import mongoose from "mongoose";
 import schema from "./graph/schema";
+import models from "./db/models";
 
 dotenv.config();
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useCreateIndex: true });
@@ -14,6 +15,7 @@ mongoose.connection.once('open', () => {
 const server = new ApolloServer({
     schema,
     context: ({ req }) => ({
+        models,
         secret: process.env.SECRET,
         req
     }),
