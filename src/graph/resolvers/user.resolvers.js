@@ -14,6 +14,14 @@ const getUserPosts = async(parent, args, { models }, info) => {
     return models.PostModel.find({ created_by: parent._id }, parseQueryFields(info, types.postTypes.PostType));
 }
 
+const findUser = async(parent, args, { models }, info) => {
+    return models.UserModel.find({ $or: [
+        { first_name: { $regex: args.text, $options: "i" } },
+        { last_name: { $regex: args.text, $options: "i" } },
+        { email: { $regex: args.text, $options: "i" } } 
+    ]}, parseQueryFields(info, types.userTypes.UserType));
+}
+
 const create = async(parent, { input }, { models }, info) => {
     const password =  await bcrypt.hash(input.password, 12);
     const user = new entities.UserEntities.User(
@@ -30,4 +38,5 @@ export default {
     get,
     create,
     getUserPosts,
+    findUser,
 }
