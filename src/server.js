@@ -1,5 +1,5 @@
 import * as dotenv from "dotenv";
-import { ApolloServer } from "apollo-server";
+import { ApolloServer, PubSub } from "apollo-server";
 import mongoose from "mongoose";
 import schema from "./graph/schema";
 import models from "./db/models";
@@ -12,12 +12,15 @@ mongoose.connection.once('open', () => {
     console.log(error);
 });
 
+const pubsub = new PubSub();
+
 const server = new ApolloServer({
     schema,
     context: ({ req }) => ({
         models,
         secret: process.env.SECRET,
-        req
+        req,
+        pubsub
     }),
     cors: {
       origin: "*",

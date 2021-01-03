@@ -1,6 +1,7 @@
-import { GraphQLString, GraphQLList, GraphQLNonNull, Graphql } from "graphql";
+import { GraphQLString, GraphQLList, GraphQLNonNull, Graphql, subscribe } from "graphql";
 import types from "../types";
 import resolvers from "../resolvers";
+import constants from "../utils/constants";
 
 const getPosts = { 
     type: new GraphQLList(types.postTypes.PostType),
@@ -22,7 +23,14 @@ const createPost = {
     resolve: async(parent, args, context, info) => resolvers.postResolvers.create(parent, args, context, info)
 };
 
+const onPostCreate = {
+    type: types.postTypes.PostType,
+    args: {},
+    subscribe: async(parent, args, context, info) => context.pubsub.asyncIterator(constants.subscriptionTopics.POSTS.CREATE)
+}
+
 export default {
     getPosts,
     createPost,
+    onPostCreate,
 };
