@@ -42,7 +42,7 @@ const removePost = {
     type: types.postTypes.PostType,
     args: {
         _id: {
-            type: GraphQLString,
+            type: new GraphQLNonNull(GraphQLString),
         },
     },
     resolve: async (parent, args, context, info) =>
